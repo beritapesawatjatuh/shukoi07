@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita SHUKOI - Media Online Sumatera Utara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1E3A8A; /* Biru tua Sumut */
+            --secondary: #DC2626; /* Merah Karo */
+            --accent: #F59E0B; /* Kuning emas */
+            --green: #059669; /* Hijau Danau Toba */
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1E40AF;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #B91C1C;
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2D4F9C 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .date-time {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+        
+        .date-time .date {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .date-time .time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            padding-top: 15px;
+        }
+        
+        .nav-menu a {
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a.active {
+            color: var(--accent);
+        }
+        
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 0;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .breaking-label {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+            padding-left: 100%;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .hero-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px 0 60px;
+        }
+        
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title h2 i {
+            color: var(--secondary);
+        }
+        
+        .view-all {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .view-all:hover {
+            color: var(--secondary);
+            gap: 12px;
+        }
+        
+        /* Berita Utama Section */
+        .berita-utama {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .featured-news {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .featured-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .featured-news:hover .featured-image img {
+            transform: scale(1.05);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .featured-content {
+            padding: 25px;
+        }
+        
+        .featured-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+        
+        .featured-excerpt {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .featured-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .featured-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Sidebar Berita */
+        .sidebar-news {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .sidebar-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+        }
+        
+        .sidebar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar-image {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .sidebar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .sidebar-card:hover .sidebar-image img {
+            transform: scale(1.1);
+        }
+        
+        .sidebar-content {
+            padding: 15px;
+            flex-grow: 1;
+        }
+        
+        .sidebar-category {
+            display: inline-block;
+            background-color: #EFF6FF;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-title {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        
+        .sidebar-meta {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        /* Berita Grid Section */
+        .berita-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .berita-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .berita-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .berita-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .berita-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .berita-card:hover .berita-image img {
+            transform: scale(1.1);
+        }
+        
+        .berita-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .berita-content {
+            padding: 20px;
+        }
+        
+        .berita-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+        
+        .berita-excerpt {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .berita-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        /* Daerah Section */
+        .daerah-section {
+            margin-bottom: 60px;
+        }
+        
+        .daerah-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 10px 25px;
+            background-color: #E5E7EB;
+            color: var(--gray);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background-color: #D1D5DB;
+        }
+        
+        .daerah-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .daerah-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .daerah-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .daerah-image {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .daerah-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .daerah-content {
+            padding: 15px;
+        }
+        
+        .daerah-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .daerah-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #D1D5DB;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            margin-top: 3px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        .footer-logo {
+            width: 140px;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #9CA3AF;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .berita-utama {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .berita-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                border-radius: 0 0 15px 15px;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 15px;
+                padding-top: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.9rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .featured-title {
+                font-size: 1.5rem;
+            }
+            
+            .daerah-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.7rem;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            .berita-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .daerah-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .contact-item {
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Coat_of_arms_of_North_Sumatra.svg/800px-Coat_of_arms_of_North_Sumatra.svg.png" alt="Logo SHUKOI">
+                    </div>
+                    <div class="logo-text">
+                        <h1>BERITA SHUKOI</h1>
+                        <p>Media Online Terpercaya Sumatera Utara</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="date-time">
+                        <div class="date" id="currentDate">Selasa, 14 Februari 2024</div>
+                        <div class="time">
+                            <i class="far fa-clock"></i> <span id="currentTime">00:00:00</span> WIB
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-bottom">
+                <nav class="nav-menu" id="navMenu">
+                    <ul>
+                        <li><a href="#berita" class="active">Berita Utama</a></li>
+                        <li><a href="#politik">Politik</a></li>
+                        <li><a href="#ekonomi">Ekonomi</a></li>
+                        <li><a href="#daerah">Berita Daerah</a></li>
+                        <li><a href="#olahraga">Olahraga</a></li>
+                        <li><a href="#budaya">Budaya</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-content">
+                <div class="breaking-label">
+                    <i class="fas fa-bolt"></i> BERITA TERKINI
+                </div>
+                <div class="marquee-container">
+                    <div class="marquee">
+                        <strong>PILKADA SUMUT 2024:</strong> Pasangan Calon Gubernur-Wakil Gubernur Sumut resmi mendaftar ke KPU - Harga cabai merah di Medan tembus Rp 120.000/kg - Kebakaran hebat landas 5 rumah di daerah Deli Serdang - Tim sepak bola PSMS Medan raih kemenangan telak 3-0 atas Persija.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Informasi Terkini Seputar Sumatera Utara</h2>
+                    <p>Dapatkan berita terbaru, perkembangan, dan informasi penting seputar Sumatera Utara. Selalu update dengan perkembangan terkini di bidang politik, ekonomi, budaya, dan pariwisata.</p>
+                    <div class="hero-buttons">
+                        <a href="#berita" class="btn btn-primary">
+                            <i class="fas fa-newspaper"></i> Baca Berita Terbaru
+                        </a>
+                        <a href="#daerah" class="btn btn-secondary">
+                            <i class="fas fa-map-marker-alt"></i> Berita Daerah
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pemandangan Sumatera Utara">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Berita Utama Section -->
+            <section id="berita">
+                <div class="berita-utama">
+                    <!-- Featured News -->
+                    <div class="featured-news">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pilkada Sumut 2024">
+                            <div class="featured-badge">UTAMA</div>
+                        </div>
+                        <div class="featured-content">
+                            <h2 class="featured-title">Pilkada Sumut 2024: Tiga Pasangan Calon Gubernur Resmi Mendaftar ke KPU</h2>
+                            <p class="featured-excerpt">Komisi Pemilihan Umum (KPU) Sumatera Utara telah menerima pendaftaran tiga pasangan calon gubernur dan wakil gubernur untuk Pilkada 2024. Proses verifikasi administrasi dan faktual akan berlangsung selama 14 hari ke depan sebelum penetapan pasangan calon.</p>
+                            <div class="featured-meta">
+                                <div class="featured-author">
+                                    <div class="author-avatar">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Reporter">
+                                    </div>
+                                    <div>
+                                        <div class="author-name">Ahmad Rizki</div>
+                                        <div class="post-date">14 Februari 2024 • 15:30 WIB</div>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar News -->
+                    <div class="sidebar-news">
+                        <div class="sidebar-card">
+                            <div class="sidebar-image">
+                                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ekonomi Sumut">
+                            </div>
+                            <div class="sidebar-content">
+                                <span class="sidebar-category">EKONOMI</span>
+                                <h3 class="sidebar-title">Pertumbuhan Ekonomi Sumut Kuartal IV 2023 Capai 5.8%</h3>
+                                <div class="sidebar-meta">13 Feb 2024 • 2.1k dilihat</div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-card">
+                            <div class="sidebar-image">
+                                <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80" alt="Olahraga Sumut">
+                            </div>
+                            <div class="sidebar-content">
+                                <span class="sidebar-category">OLAHRAGA</span>
+                                <h3 class="sidebar-title">PSMS Medan Kalahkan Persija 3-0 di Stadion Teladan</h3>
+                                <div class="sidebar-meta">12 Feb 2024 • 3.4k dilihat</div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-card">
+                            <div class="sidebar-image">
+                                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pertanian Sumut">
+                            </div>
+                            <div class="sidebar-content">
+                                <span class="sidebar-category">PERTANIAN</span>
+                                <h3 class="sidebar-title">Panen Raya Padi di Deli Serdang Capai 8 Ton/Hektar</h3>
+                                <div class="sidebar-meta">11 Feb 2024 • 1.7k dilihat</div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-card">
+                            <div class="sidebar-image">
+                                <img src="https://images.unsplash.com/photo-1516054575922-f0b8ee922fdc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pariwisata Danau Toba">
+                            </div>
+                            <div class="sidebar-content">
+                                <span class="sidebar-category">PARIWISATA</span>
+                                <h3 class="sidebar-title">Kunjungan Wisatawan ke Danau Toba Naik 45% di Awal 2024</h3>
+                                <div class="sidebar-meta">10 Feb 2024 • 2.8k dilihat</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Berita Grid Section -->
+            <section id="politik">
+                <div class="section-title">
+                    <h2><i class="fas fa-landmark"></i> Berita Politik</h2>
+                    <a href="#" class="view-all">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="berita-grid">
+                    <!-- Berita 1 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DPRD Sumut">
+                            <div class="berita-category">POLITIK</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">DPRD Sumut Sahkan Perda APBD 2024 Senilai Rp 12,8 Triliun</h3>
+                            <p class="berita-excerpt">Dewan Perwakilan Rakyat Daerah (DPRD) Sumatera Utara menyetujui pengesahan Peraturan Daerah tentang Anggaran Pendapatan dan Belanja Daerah (APBD) Tahun 2024 dengan nilai Rp 12,8 triliun.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 14 Feb 2024</span>
+                                <span><i class="far fa-eye"></i> 1.8k dilihat</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Berita 2 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pembangunan Sumut">
+                            <div class="berita-category">POLITIK</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Gubernur Sumut Tinjau Proyek Jalan Tol Medan-Kualanamu-Tebing Tinggi</h3>
+                            <p class="berita-excerpt">Gubernur Sumatera Utara melakukan peninjauan langsung progres pembangunan jalan tol Medan-Kualanamu-Tebing Tinggi yang saat ini telah mencapai 75% penyelesaian.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 13 Feb 2024</span>
+                                <span><i class="far fa-eye"></i> 2.3k dilihat</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Berita 3 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pemilu 2024">
+                            <div class="berita-category">POLITIK</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">KPU Sumut Siap Gelar Pemungutan Suara Ulang di 15 TPS</h3>
+                            <p class="berita-excerpt">Komisi Pemilihan Umum (KPU) Sumatera Utara akan menggelar pemungutan suara ulang (PSU) di 15 Tempat Pemungutan Suara (TPS) karena berbagai permasalahan administratif dan teknis.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 12 Feb 2024</span>
+                                <span><i class="far fa-eye"></i> 1.5k dilihat</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Daerah Section -->
+            <section id="daerah" class="daerah-section">
+                <div class="section-title">
+                    <h2><i class="fas fa-map-marked-alt"></i> Berita Daerah</h2>
+                    <a href="#" class="view-all">Semua Daerah <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="daerah-tabs">
+                    <button class="tab-btn active" data-tab="medan">Medan</button>
+                    <button class="tab-btn" data-tab="toba">Toba</button>
+                    <button class="tab-btn" data-tab="simalungun">Simalungun</button>
+                    <button class="tab-btn" data-tab="deli">Deli Serdang</button>
+                    <button class="tab-btn" data-tab="karo">Karo</button>
+                    <button class="tab-btn" data-tab="labuhan">Labuhan Batu</button>
+                </div>
+                
+                <div class="daerah-grid">
+                    <!-- Daerah 1 -->
+                    <div class="daerah-card">
+                        <div class="daerah-image">
+                            <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medan">
+                        </div>
+                        <div class="daerah-content">
+                            <h3 class="daerah-title">Pemkot Medan Terima Penghargaan Kota Terbaik dalam Penanganan Sampah</h3>
+                            <div class="daerah-meta">
+                                <span><i class="far fa-calendar"></i> 14 Feb 2024</span>
+                                <span>Medan</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Daerah 2 -->
+                    <div class="daerah-card">
+                        <div class="daerah-image">
+                            <img src="https://images.unsplash.com/photo-1516054575922-f0b8ee922fdc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Danau Toba">
+                        </div>
+                        <div class="daerah-content">
+                            <h3 class="daerah-title">Festival Danau Toba 2024 Akan Digelar dengan Skala Lebih Besar</h3>
+                            <div class="daerah-meta">
+                                <span><i class="far fa-calendar"></i> 13 Feb 2024</span>
+                                <span>Toba</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Daerah 3 -->
+                    <div class="daerah-card">
+                        <div class="daerah-image">
+                            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Simalungun">
+                        </div>
+                        <div class="daerah-content">
+                            <h3 class="daerah-title">Pembangunan Pabrik Gula di Simalungun Capai 60% Penyelesaian</h3>
+                            <div class="daerah-meta">
+                                <span><i class="far fa-calendar"></i> 12 Feb 2024</span>
+                                <span>Simalungun</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Daerah 4 -->
+                    <div class="daerah-card">
+                        <div class="daerah-image">
+                            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deli Serdang">
+                        </div>
+                        <div class="daerah-content">
+                            <h3 class="daerah-title">Deli Serdang Raih Swasembada Beras untuk Ketiga Kalinya</h3>
+                            <div class="daerah-meta">
+                                <span><i class="far fa-calendar"></i> 11 Feb 2024</span>
+                                <span>Deli Serdang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="tentang">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Tentang SHUKOI -->
+                <div class="footer-section">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Coat_of_arms_of_North_Sumatra.svg/200px-Coat_of_arms_of_North_Sumatra.svg.png" alt="Logo SHUKOI" class="footer-logo">
+                    <h3>Tentang Berita SHUKOI</h3>
+                    <p>Berita SHUKOI adalah media online terpercaya yang menyajikan informasi terkini seputar Sumatera Utara. Kami berkomitmen menyampaikan berita yang akurat, berimbang, dan bermanfaat bagi masyarakat Sumatera Utara.</p>
+                    <p>SHUKOI merupakan singkatan dari Sumatera Utara, Harian Online Informasi.</p>
+                </div>
+                
+                <!-- Kontak -->
+                <div class="footer-section">
+                    <h3>Kontak Kami</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>Jl. Jenderal Sudirman No. 123</p>
+                                <p>Medan, Sumatera Utara 20152</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>(061) 1234567</p>
+                                <p>08:00 - 17:00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>redaksi@beritashukoi.id</p>
+                                <p>info@beritashukoi.id</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Link Cepat -->
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <a href="#berita">Berita Utama</a>
+                    <a href="#politik">Berita Politik</a>
+                    <a href="#ekonomi">Berita Ekonomi</a>
+                    <a href="#daerah">Berita Daerah</a>
+                    <a href="#olahraga">Berita Olahraga</a>
+                    <a href="#budaya">Budaya & Pariwisata</a>
+                    <a href="#tentang">Tentang Kami</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Berita SHUKOI. Semua Hak Dilindungi.</p>
+                <p>Media Online Terpercaya Sumatera Utara | Terdaftar di Dewan Pers No. 01234/DP/2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update date and time
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format date
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('id-ID', options);
+            document.getElementById('currentDate').textContent = dateStr;
+            
+            // Format time
+            const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
+            document.getElementById('currentTime').textContent = timeStr;
+        }
+        
+        // Update date and time immediately and every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                
+                // Update active menu
+                navLinks.forEach(item => item.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+        
+        // Tab functionality for daerah section
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // In a real implementation, you would filter content based on the tab
+                // For this demo, we'll just show an alert
+                const region = btn.getAttribute('data-tab');
+                console.log(`Switched to ${region} region`);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Don't prevent default for view-all links
+                if (this.classList.contains('view-all')) return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add hover effect to news cards
+        const newsCards = document.querySelectorAll('.berita-card, .sidebar-card, .daerah-card');
+        newsCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.classList.contains('berita-card') 
+                    ? 'translateY(-10px)' 
+                    : this.classList.contains('daerah-card')
+                    ? 'translateY(-5px)'
+                    : 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
